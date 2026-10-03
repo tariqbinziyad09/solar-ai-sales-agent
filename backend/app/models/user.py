@@ -12,7 +12,7 @@ Roles:
 
 from datetime import datetime
 
-from sqlalchemy import Boolean, DateTime, Integer, String, text
+from sqlalchemy import Boolean, DateTime, Integer, String, func, true
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.database.database import Base
@@ -58,12 +58,12 @@ class User(Base):
         Boolean,
         nullable=False,
         default=True,
-        server_default=text("1"),
+        server_default=true(),
     )
 
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
         nullable=False,
         default=datetime.utcnow,
-        server_default=text("GETDATE()"),
+        server_default=func.now(),
     )

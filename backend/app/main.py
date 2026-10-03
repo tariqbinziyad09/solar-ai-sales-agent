@@ -1,3 +1,5 @@
+import os
+
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
@@ -14,14 +16,31 @@ from app.api.routes.users import router as users_router
 from app.database.database import engine
 from app.services.auth_service import get_current_user
 
+
+def _cors_origins() -> list[str]:
+    """Local origins + optional comma-separated production origins."""
+    origins = {
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    }
+    configured = os.getenv("CORS_ORIGINS", "")
+    origins.update(
+        origin.strip().rstrip("/")
+        for origin in configured.split(",")
+        if origin.strip()
+    )
+    return sorted(origins)
+
+
 app = FastAPI(
     title="Solar AI Sales Agent",
     description="AI-powered sales and customer support system for solar companies",
-    version="1.1.0",
+    version="1.2.0",
 )
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=_cors_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -31,6 +50,7 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(agent_router)
 app.include_router(users.router)
+
 # Internal CRM APIs: authentication required.
 staff_auth = [Depends(get_current_user)]
 app.include_router(leads_router, dependencies=staff_auth)
@@ -55,4 +75,8 @@ def health_check():
             connection.execute(text("SELECT 1"))
         return {"status": "healthy", "database": "connected"}
     except SQLAlchemyError as error:
-        return {"status": "unhealthy", "database": "disconnected", "error": str(error)}
+        return {
+            "status": "unhealthy",
+            "database": "disconnected",
+            "error": str(error),
+        }

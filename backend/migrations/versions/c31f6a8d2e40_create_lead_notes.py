@@ -18,7 +18,7 @@ def upgrade():
         sa.Column("lead_id", sa.Integer(), nullable=False),
         sa.Column("author_user_id", sa.Integer(), nullable=False),
         sa.Column("content", sa.Text(), nullable=False),
-        sa.Column("created_at", sa.DateTime(), nullable=False, server_default=sa.func.getdate()),
+        sa.Column("created_at", sa.DateTime(), nullable=False, server_default=sa.func.now()),
         sa.ForeignKeyConstraint(["lead_id"], ["leads.id"], ondelete="CASCADE"),
         sa.ForeignKeyConstraint(["author_user_id"], ["users.id"]),
         sa.PrimaryKeyConstraint("id"),
