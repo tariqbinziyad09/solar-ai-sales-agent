@@ -579,37 +579,32 @@ Before pushing the project to a public GitHub repository:
 
 ## Screenshots
 
-Add final application screenshots here before publishing:
-
-```text
-docs/screenshots/
-├── login.png
-├── dashboard.png
-├── leads-kanban.png
-├── lead-details.png
-├── ai-sales-agent.png
-├── proposals.png
-├── proposal-details.png
-├── products.png
-├── packages.png
-├── staff-management.png
-└── settings.png
-```
-
-Suggested README layout:
-
-```md
-## Screenshots
-
 ### Dashboard
-![Dashboard](docs/screenshots/dashboard.png)
+![Solar AI Sales Agent Dashboard](docs/screenshots/dashboard.png)
 
 ### AI Sales Agent
-![AI Sales Agent](docs/screenshots/ai-sales-agent.png)
+![AI Solar Sales Agent](docs/screenshots/ai-sales-agent.png)
 
-### CRM Pipeline
-![Leads](docs/screenshots/leads-kanban.png)
-```
+### Lead Pipeline
+![CRM Lead Pipeline](docs/screenshots/leads-kanban.png)
+
+### Lead Details
+![Lead Details](docs/screenshots/lead-details.png)
+
+### Proposals
+![Solar Proposals](docs/screenshots/proposals.png)
+
+### Products
+![Solar Product Management](docs/screenshots/products.png)
+
+### Packages
+![Solar Package Management](docs/screenshots/packages.png)
+
+### Staff Management
+![CRM Staff Management](docs/screenshots/staff-management.png)
+
+### Settings
+![Account Settings](docs/screenshots/settings.png)
 
 ---
 
