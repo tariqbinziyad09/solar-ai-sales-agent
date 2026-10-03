@@ -22,12 +22,11 @@ def _cors_origins() -> list[str]:
     origins = {
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://solar-ai-sales-agent-1.onrender.com",
     }
     configured = os.getenv("CORS_ORIGINS", "")
     origins.update(
-        origin.strip().rstrip("/")
-        for origin in configured.split(",")
-        if origin.strip()
+        origin.strip().rstrip("/") for origin in configured.split(",") if origin.strip()
     )
     return sorted(origins)
 
