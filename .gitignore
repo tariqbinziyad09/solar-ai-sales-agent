@@ -1,0 +1,29 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Node / Vite
+node_modules/
+dist/
+.vite/
+
+# Generated proposal files
+PROP-*.pdf
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
